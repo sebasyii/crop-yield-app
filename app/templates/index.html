@@ -1,0 +1,72 @@
+{% extends "base.html" %} {% block app_content %}
+
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-header bg-success text-white">
+                <h4 class="mb-0">Predict Crop Yield</h4>
+            </div>
+            <div class="card-body">
+                <form
+                    class="needs-validation"
+                    method="post"
+                    action="/"
+                    novalidate
+                >
+                    {{ form.hidden_tag() }} {% for feature in features %}
+                    <div class="form-group">
+                        <label for="{{ feature.name }}"
+                            >{{ feature.label }}</label
+                        >
+                        <div class="input-group">
+                            <input
+                                type="{{ feature.type }}"
+                                class="form-control"
+                                id="{{ feature.name }}"
+                                name="{{ feature.name }}"
+                                value="{{ input_values[feature.name] | default(feature.default) }}"
+                                required
+                            />
+                            <div class="input-group-append">
+                                <span class="input-group-text"
+                                    >{{ feature.unit }}</span
+                                >
+                            </div>
+                        </div>
+                        <small class="form-text text-muted">
+                            {{ feature.description }}.
+                        </small>
+                    </div>
+                    {% endfor %}
+
+                    <button
+                        type="submit"
+                        class="btn btn-success btn-lg btn-block"
+                    >
+                        Predict Yield
+                    </button>
+                </form>
+
+                {% if prediction is not none %}
+                <div class="mt-4">
+                    <div class="alert alert-success">
+                        <h5 class="alert-heading">Prediction Result</h5>
+                        <p class="mb-0">
+                            Predicted Crop Yield:
+                            <strong
+                                >{{ "%.2f"|format(prediction) }}
+                                kg/hectare</strong
+                            >
+                        </p>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Include the Transcrypt compiled JavaScript code -->
+<!-- <script type="module" src="__target__/clientlibrary.js"></script> -->
+
+{% endblock %}
