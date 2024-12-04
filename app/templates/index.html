@@ -10,7 +10,7 @@
                 <form
                     class="needs-validation"
                     method="post"
-                    action="/"
+                    action="{{prefix}}{{ url_for('index') }}"
                     novalidate
                 >
                     {{ form.hidden_tag() }} {% for feature in features %}
