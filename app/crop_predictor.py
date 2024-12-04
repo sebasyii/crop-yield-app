@@ -3,7 +3,7 @@ import numpy as np
 
 class CropPredictor:
     """
-    This class is used to predict the crop based on the input data. It will load the model created by pandas and numpy. It is a linear regression model.
+    This class is used to predict the crop based on the input data.
     """
 
     def __init__(self):
@@ -78,6 +78,7 @@ class CropPredictor:
     def predict(self, features):
         # Preprocess the features
         feature_vector = self._preprocess_features(features)
+        # Calculate the prediction using the model coefficients
         # Calculate the prediction
         prediction = np.dot(feature_vector, self.model_beta)
         return prediction
