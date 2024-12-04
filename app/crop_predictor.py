@@ -58,9 +58,9 @@ class CropPredictor:
         feature_vector = np.array(
             [
                 fertilizers_used,
+                land_area_equipped_for_irrigation,
                 annual_precipitation,
                 employment,
-                land_area_equipped_for_irrigation,
             ]
         )
         # Normalize the feature vector using training means and stds

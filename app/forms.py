@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import FloatField, SubmitField
-from wtforms.validators import DataRequired
+from wtforms.validators import DataRequired, NumberRange
 
 
 class CropPredictionForm(FlaskForm):
@@ -8,6 +8,7 @@ class CropPredictionForm(FlaskForm):
         "Fertilizer Amount (kg/ha)",
         validators=[
             DataRequired(),
+            NumberRange(min=0),
         ],
     )
 
@@ -15,6 +16,7 @@ class CropPredictionForm(FlaskForm):
         "Employment in Agriculture in terms of Number of People",
         validators=[
             DataRequired(),
+            NumberRange(min=0),
         ],
     )
 
@@ -22,6 +24,7 @@ class CropPredictionForm(FlaskForm):
         "Annual Precipitation (mm)",
         validators=[
             DataRequired(),
+            NumberRange(min=0),
         ],
     )
 
@@ -29,6 +32,7 @@ class CropPredictionForm(FlaskForm):
         "Irrigated Land Area (hectares)",
         validators=[
             DataRequired(),
+            NumberRange(min=0),
         ],
     )
 

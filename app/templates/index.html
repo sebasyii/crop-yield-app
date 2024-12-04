@@ -49,16 +49,26 @@
 
                 {% if prediction is not none %}
                 <div class="mt-4">
-                    <div class="alert alert-success">
+                    {% if prediction == 0 %}
+                    <div class="alert alert-danger">
                         <h5 class="alert-heading">Prediction Result</h5>
                         <p class="mb-0">
                             Predicted Crop Yield:
-                            <strong
-                                >{{ "%.2f"|format(prediction) }}
-                                kg/hectare</strong
-                            >
+                                <strong>Not Viable by Model's Estimates</strong>
                         </p>
                     </div>
+                    {% else %}
+                        <div class="alert alert-success">
+                            <h5 class="alert-heading">Prediction Result</h5>
+                            <p class="mb-0">
+                                Predicted Crop Yield:
+                                <strong
+                                    >{{ "%.2f"|format(prediction) }}
+                                    kg/hectare</strong
+
+                            </p>
+                        </div>
+                    {% endif %}
                 </div>
                 {% endif %}
             </div>

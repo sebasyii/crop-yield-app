@@ -17,6 +17,10 @@ def register_routes(app):
             input_values = form.get_data()
             # Use the predictor to make predictions
             prediction = predictor.predict(input_values)
+
+            # if prediction is negative, set it to '-' and indicate by the model's estimates these values are not viable for growing crops
+            if prediction < 0:
+                prediction = 0
             return render_template(
                 "index.html",
                 title="Crop Yield Prediction App",
